@@ -48,17 +48,18 @@ require("gitsigns").setup()
 require("nvim-autopairs").setup()
 require("Comment").setup()
 
+
 -- ── LSP ───────────────────────────────────────────────────
-local lsp = require("lspconfig")
 local caps = require("cmp_nvim_lsp").default_capabilities()
 
-lsp.ts_ls.setup({ capabilities = caps })
-lsp.rust_analyzer.setup({ capabilities = caps })
+vim.lsp.config('ts_ls', { capabilities = caps })
+vim.lsp.config('rust_analyzer', { capabilities = caps })
+vim.lsp.enable({'ts_ls', 'rust_analyzer'})
 
-map("n", "gd", vim.lsp.buf.definition)
-map("n", "K", vim.lsp.buf.hover)
-map("n", "<leader>rn", vim.lsp.buf.rename)
-map("n", "<leader>ca", vim.lsp.buf.code_action)
+vim.keymap.set("n", "gd", vim.lsp.buf.definition)
+vim.keymap.set("n", "K", vim.lsp.buf.hover)
+vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename)
+vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action)
 
 -- ── Completion ────────────────────────────────────────────
 local cmp = require("cmp")
